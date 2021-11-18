@@ -1,0 +1,46 @@
+<header class="p-4 bg-coolGray-100 text-coolGray-800">
+  <div class="container flex justify-between h-16 mx-auto">
+    <ul class="items-stretch hidden space-x-3 lg:flex">
+      <li class="flex">
+        <a routerLink="/"
+          class="flex items-center px-4 -mb-1 border-b-2 border-transparent font-semibold bg-violet-600 text-coolGray-50">Trang
+          Chủ</a>
+      </li>
+      <li class="flex">
+        <a routerLink="/list-course" routerLinkActive="active"
+          class="flex items-center px-4 -mb-1 border-b-2 border-transparent font-semibold bg-violet-600 text-coolGray-50">Danh
+          sách khóa học</a>
+      </li>
+      <li class="nav-item dropdown flex">
+        <a class="nav-link dropdown-toggle flex items-center px-4 -mb-1 border-b-2 border-transparent font-semibold bg-violet-600 text-coolGray-50 "
+          routerLink="/" routerLinkActive="active" id="navbardrop" data-toggle="dropdown">
+          Courses
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/" *ngFor="let courses of menuCourses">{{courses.maDanhMuc}}
+            {{courses.tenDanhMuc}}</a>
+
+        </div>
+      </li>
+    </ul>
+    <a routerLink="/" routerLinkActive="active" aria-label="Back to homepage" class="flex items-center p-2">
+      <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/03/MIN-OP1.png" alt="logo elearning"
+        style="padding-right: 50px;">
+    </a>
+    <div class="flex items-center md:space-x-4">
+
+      <button routerLink="/register" routerLinkActive="active"
+        class="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-600 text-coolGray-50">Register</button>
+      <button type="button" routerLink="/auth" routerLinkActive="active"
+        class="hidden px-6 py-2 font-semibold rounded lg:block bg-violet-600 text-coolGray-50">Log
+        in</button>
+    </div>
+
+    <button title="Open menu" type="button" class="p-4 lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        class="w-6 h-6 text-coolGray-800">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+</header>

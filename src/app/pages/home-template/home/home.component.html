@@ -1,0 +1,32 @@
+<app-carousel></app-carousel>
+<hr />
+
+<section class="p-6 bg-coolGray-100 text-coolGray-800">
+  <div class="container p-4 mx-auto text-center">
+    <h1 class="text-4xl font-bold text-primary">Các khóa học mới nhất</h1>
+  </div>
+</section>
+<form>
+  <div class="form-group">
+
+    <input type="text" class="form-control" [(ngModel)]="term" name="term" placeholder="Chọn tìm khóa học">
+  </div>
+</form>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3"
+      *ngFor="let cardCourses of courseCard.items | paginate: { itemsPerPage: 8, currentPage: p } | filter:term">
+      <app-child-home [cardCourses]=" cardCourses">
+      </app-child-home>
+
+
+    </div>
+  </div>
+
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<br />
+<br />

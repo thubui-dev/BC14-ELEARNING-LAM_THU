@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <ng-container *ngIf="listCourse">
+      <div class="col-md-3" *ngFor="let course of listCourse | paginate: { itemsPerPage: 8, currentPage: p }">
+        <app-course [course]="course"></app-course>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<app-modal></app-modal>

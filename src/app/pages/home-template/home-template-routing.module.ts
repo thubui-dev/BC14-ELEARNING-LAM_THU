@@ -1,48 +1,53 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeTemplateComponent } from './home-template.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { HomeTemplateComponent } from "./home-template.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeTemplateComponent,
     children: [
       //home
       {
-        path: '',
+        path: "",
         loadChildren: () =>
-          import('./home/home.module').then((m) => m.HomeModule),
+          import("./home/home.module").then((m) => m.HomeModule),
       },
 
       //about - localhost:4200/about
       {
-        path: 'about',
+        path: "about",
         loadChildren: () =>
-          import('./about/about.module').then((m) => m.AboutModule),
+          import("./about/about.module").then((m) => m.AboutModule),
       },
 
       //list-course - localhost:4200/list-course
       {
-        path: 'list-course',
+        path: "list-course",
         loadChildren: () =>
-          import('./list-course/list-course.module').then(
+          import("./list-course/list-course.module").then(
             (m) => m.ListCourseModule
           ),
       },
 
       //detail-course - localhost:4200/detail
       {
-        path: 'detail/:id',
+        path: "detail/:id",
         loadChildren: () =>
-          import('./detail-course/detail-course.module').then(
+          import("./detail-course/detail-course.module").then(
             (m) => m.DetailCourseModule
           ),
       },
 
       {
-        path: 'register',
+        path: "register",
         loadChildren: () =>
-          import('./register/register.module').then((m) => m.RegisterModule),
+          import("./register/register.module").then((m) => m.RegisterModule),
+      },
+      {
+        path: "user-info",
+        loadChildren: () =>
+          import("./user-info/user-info.module").then((m) => m.UserInfoModule),
       },
     ],
   },

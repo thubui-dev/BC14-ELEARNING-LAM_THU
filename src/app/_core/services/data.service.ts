@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { tap, catchError } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
 
-let urlApi = '';
+let urlApi = "";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class DataService {
   constructor(private http: HttpClient) {
@@ -34,9 +34,20 @@ export class DataService {
     );
   }
 
+  postRegisterCourses(uri: any, data: any): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";
+    return this.http.post(uri, data).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   getListCourse(): Observable<any> {
     const url =
-      'https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01';
+      "https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01";
     return this.http.get(url).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -47,7 +58,7 @@ export class DataService {
 
   getListCourseCard(): Observable<any> {
     const url =
-      'https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=1&pageSize=10&MaNhom=GP01';
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=1&pageSize=10&MaNhom=GP01";
     return this.http.get(url).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -58,7 +69,7 @@ export class DataService {
 
   getMenuCourses(): Observable<any> {
     const url =
-      'https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhMucKhoaHoc';
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhMucKhoaHoc";
     return this.http.get(url).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -79,7 +90,7 @@ export class DataService {
 
   registerUser(user: any): Observable<any> {
     const url =
-      'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy';
+      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -89,7 +100,7 @@ export class DataService {
   }
   addUser(user: any): Observable<any> {
     const url =
-      'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung';
+      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -100,7 +111,7 @@ export class DataService {
 
   loginAuth(user: any): Observable<any> {
     const url =
-      'https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap';
+      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {

@@ -24,6 +24,17 @@ export class DataService {
     );
   }
 
+  getDetailUserCourse(): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinHocVienKhoaHoc?maKhoaHoc=0.14967431092137828";
+    return this.http.get(url).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   post(uri: any, data: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
     return this.http.post(url, data).pipe(

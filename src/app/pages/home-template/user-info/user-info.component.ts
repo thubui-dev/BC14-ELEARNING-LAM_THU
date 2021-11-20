@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { DataService } from "@services/data.service";
 
 @Component({
@@ -7,10 +8,20 @@ import { DataService } from "@services/data.service";
   styleUrls: ["./user-info.component.scss"],
 })
 export class UserInfoComponent implements OnInit {
+  detailUserCourse: any = {};
   alert: boolean = false;
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserCourse();
+  }
+
+  getUserCourse() {
+    this.dataService.getDetailUserCourse().subscribe((result: any) => {
+      this.detailUserCourse = { ...result };
+      console.log(this.detailUserCourse);
+    });
+  }
 
   registerCourse(courses: any) {
     console.log(courses);

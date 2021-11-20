@@ -8,6 +8,7 @@ import { DataService } from "@services/data.service";
   styleUrls: ["./user-info.component.scss"],
 })
 export class UserInfoComponent implements OnInit {
+  detailUserCourse: any = {};
   alert: boolean = false;
   constructor(private dataService: DataService) {}
 
@@ -17,7 +18,8 @@ export class UserInfoComponent implements OnInit {
 
   getUserCourse() {
     this.dataService.getDetailUserCourse().subscribe((result: any) => {
-      console.log(result);
+      this.detailUserCourse = { ...result };
+      console.log(this.detailUserCourse);
     });
   }
 

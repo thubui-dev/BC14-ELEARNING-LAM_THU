@@ -34,10 +34,10 @@ export class DataService {
     );
   }
 
-  postRegisterCourses(uri: any, data: any): Observable<any> {
+  postRegisterCourses(courses: any): Observable<any> {
     const url =
       "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";
-    return this.http.post(uri, data).pipe(
+    return this.http.post(url, courses).pipe(
       tap(() => {}),
       catchError((error: any) => {
         return this.handleError(error);

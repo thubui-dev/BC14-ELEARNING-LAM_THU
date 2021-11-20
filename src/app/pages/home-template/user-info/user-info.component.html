@@ -1,6 +1,56 @@
 <mat-tab-group>
-    <mat-tab label="Thông tin khóa học">
+    <mat-tab label="Thông tin đăng ký khóa học">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Bạn đã đăng ký khóa học thành công !</strong>
+                        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form #registerCourseForm="ngForm" (ngSubmit)="registerCourse(registerCourseForm.value)">
+                        <div class="form-group">
+                            <label>Mã khóa học</label>
+                            <input type="text" name="maKhoaHoc" class="form-control"
+                                placeholder="Copy mã khóa học từ trang detail vào" aria-describedby="helpId" ngModel
+                                required #maKhoaHoc="ngModel" />
+                            <div class="alert alert-danger"
+                                *ngIf="maKhoaHoc.errors && (maKhoaHoc.dirty || maKhoaHoc.touched)">
+                                <!-- Kiểm tra rỗng -->
+                                <div *ngIf="maKhoaHoc.errors.required">Mã khóa học không được bỏ trống</div>
 
-        Content 1 </mat-tab>
-    <mat-tab label="Thông tin User"> Content 2 </mat-tab>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label> Tên tài khoản</label>
+                            <input type="text" name="taiKhoan" class="form-control"
+                                placeholder="Nhập tài khoản id của bạn vào" aria-describedby="helpId" ngModel required
+                                #taiKhoan="ngModel" minlength="7" maxlength="15">
+                            <div class="alert alert-danger"
+                                *ngIf="taiKhoan.errors && (taiKhoan.dirty || taiKhoan.touched)">
+                                <!-- Kiểm tra rỗng -->
+                                <div *ngIf="taiKhoan.errors.required"> Tài khoản không được bỏ trống</div>
+                                <!-- Kiểm tra độ dài ký tự -->
+                                <div *ngIf="taiKhoan.errors.minlength || taiKhoan.errors.max length "> Độ dài ký tự phải
+                                    từ 7 đến 15</div>
+
+
+                            </div>
+
+                        </div>
+                        <button class="btn btn-success" [disabled]="!registerCourseForm.valid"> Đăng ký khóa
+                            học</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </mat-tab>
 </mat-tab-group>

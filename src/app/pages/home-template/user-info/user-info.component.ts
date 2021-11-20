@@ -13,7 +13,6 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {}
 
   registerCourse(courses: any) {
-    courses.taiKhoan = "admin_test";
     console.log(courses);
     this.dataService.postRegisterCourses(courses).subscribe((result) => {
       console.log(result);

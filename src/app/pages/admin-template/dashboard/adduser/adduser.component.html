@@ -4,7 +4,7 @@
       <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm.value)">
         <div class="form-group">
           <label for="">Họ và tên</label>
-          <input type="text" class="form-control" name="hoTen" ngModel />
+          <input type="text" class="form-control" name="hoTen" [(ngModel)]="userEdit.hoTen" />
         </div>
         <div class="form-group">
           <label for="">Tài khoản</label>
@@ -12,11 +12,12 @@
             type="text"
             class="form-control"
             name="taiKhoan"
-            ngModel
+            [(ngModel)]="userEdit.taiKhoan"
             required
             #TaiKhoan="ngModel"
             minlength="8"
             maxlength="12"
+            [disabled]="id"
           />
           <div
             class="alert alert-danger"
@@ -33,7 +34,7 @@
         </div>
         <div class="form-group">
           <label for="">Mật khẩu</label>
-          <input type="text" class="form-control" name="matKhau" ngModel />
+          <input type="text" class="form-control" name="matKhau" [(ngModel)]="userEdit.matKhau" />
         </div>
         <div class="form-group">
           <label for="">Email</label>
@@ -41,7 +42,7 @@
             type="text"
             class="form-control"
             name="email"
-            ngModel
+            [(ngModel)]="userEdit.email"
             required
             #Email="ngModel"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -56,20 +57,25 @@
         </div>
         <div class="form-group">
           <label for="">SĐT</label>
-          <input type="text" class="form-control" name="soDT" ngModel />
+          <input type="text" class="form-control" name="soDT" [(ngModel)]="userEdit.soDT" />
         </div>
         <div class="form-group">
           <label for="user">Loại người dùng:</label>
-          <select name="loaiNguoiDung" id="user">
+          <select name="loaiNguoiDung" id="user" [(ngModel)]="userEdit.maLoaiNguoiDung">
             <option value="GV">Giáo viên</option>
             <option value="HV">Học viên</option>
           </select>
         </div>
-        <button class="btn btn-primary" [disabled]="!addUserForm.valid">
+        <button *ngIf="!id; else btnUpdate" class="btn btn-primary" [disabled]="!addUserForm.valid">
           Add user
         </button>
+        <ng-template #btnUpdate>
+          <button class="btn btn-success" [disabled]="!addUserForm.valid">
+            Edit user
+          </button>
+        </ng-template>
         <button class="btn btn-warning comeBack" routerLink="/admin/dashboard">
-            Trở lại
+          Trở lại
         </button>
       </form>
     </div>

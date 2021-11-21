@@ -45,6 +45,16 @@ export class DataService {
     );
   }
 
+  put(uri: any, data: any): Observable<any> {
+    const url = `${urlApi}/${uri}`;
+    return this.http.put(url, data).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   delete(uri: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
     return this.http.delete(url).pipe(

@@ -29,21 +29,23 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  fillEditUser(id: any) {
-    this.route.navigate(['/admin/dashboard/quanlynguoidung'], { queryParams: { id } });
+  fillEditUser(data: any) {
+    this.route.navigate(["/admin/dashboard/quanlynguoidung"], {
+      queryParams: { taiKhoan: data.taiKhoan, matKhau: data.matKhau },
+    });
   }
 
   deleteListUser(id: any) {
     console.log("id", id);
-    
+
     this.data
       .delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
       .subscribe((result: any) => {
-        this.listUser = this.listUser.filter((user: any) =>{
+        this.listUser = this.listUser.filter((user: any) => {
           if (user.id === id) {
-           return false
+            return false;
           } else {
-           return true
+            return true;
           }
         });
       });

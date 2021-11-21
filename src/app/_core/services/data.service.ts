@@ -45,6 +45,16 @@ export class DataService {
     );
   }
 
+  delete(uri: any): Observable<any> {
+    const url = `${urlApi}/${uri}`;
+    return this.http.delete(url).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+  
   postRegisterCourses(courses: any): Observable<any> {
     const url =
       "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";

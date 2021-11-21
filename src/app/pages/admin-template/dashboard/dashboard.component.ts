@@ -1,23 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/_core/services/data.service';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "@services/data.service";
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private data: DataService) {}
+  searchUser: string;
+  listUser: any;
+  subListUser = new Subscription();
+  constructor(private data: DataService, private route: Router) {
+    this.searchUser = "";
+    this.listUser = [];
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getListUser();
+  }
 
-  addUser(user: any) {
-    user.maLoaiNguoiDung = 'HV';
-    user.maNhom = 'GP01';
+  getListUser() {
+    this.subListUser = this.data
+      .get("/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP02")
+      .subscribe((result: any) => {
+        this.listUser = result;
+      });
+  }
+
+  fillEditUser(id: any) {
+    this.route.navigate(['/admin/dashboard/quanlynguoidung'], { queryParams: { id } });
+  }
+
+  deleteListUser(id: any) {
+    console.log("id", id);
+    
     this.data
-      .post('/api/QuanLyNguoiDung/ThemNguoiDung', user)
-      .subscribe((result) => {
-        console.log(result);
+      .delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`)
+      .subscribe((result: any) => {
+        this.listUser = this.listUser.filter((user: any) =>{
+          if (user.id === id) {
+           return false
+          } else {
+           return true
+          }
+        });
       });
   }
 }

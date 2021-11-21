@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
   },
+  {
+    path: 'quanlynguoidung',
+    loadChildren: () =>
+      import('./adduser/adduser.module').then((m) => m.AdduserModule),
+  },
 ];
 
 @NgModule({

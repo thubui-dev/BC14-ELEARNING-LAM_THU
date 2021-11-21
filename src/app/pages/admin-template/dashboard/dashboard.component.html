@@ -1,1 +1,134 @@
-<p> Đang cập nhật</p>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+    <img
+      class="imgitem"
+      src="https://cybersoft.edu.vn/wp-content/uploads/2017/03/MIN-OP1.png"
+      alt="logo elearning"
+    />
+  </a>
+  <input
+    class="form-control form-control-light w-100"
+    type="text"
+    [(ngModel)]="searchUser"
+    name="searchUser"
+    placeholder="Tìm kiếm người dùng"
+    aria-label="Search"
+  />
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <h2
+              class="
+                sidebar-heading
+                d-flex
+                justify-content-between
+                align-items-center
+                px-3
+                mt-4
+                mb-1
+                text-muted
+              "
+            >
+              <span>DASHBOARD</span>
+            </h2>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/dashboard">
+              Quản lý người dùng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> Quản lý khóa học </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div
+        class="
+          d-flex
+          justify-content-between
+          flex-wrap flex-md-nowrap
+          align-items-center
+          pb-2
+          mb-3
+          border-bottom
+        "
+      >
+        <button class="btn btn-primary h2" routerLink="quanlynguoidung">
+          Thêm người dùng
+        </button>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tài khoản</th>
+              <th>Mật khẩu</th>
+              <th>Họ tên</th>
+              <th>Email</th>
+              <th>SĐT</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of (listUser | nameFilter: searchUser); let i = index">
+              <td>{{ i }}</td>
+              <td>{{ data.taiKhoan }}</td>
+              <td>{{ data.matKhau }}</td>
+              <td>{{ data.hoTen }}</td>
+              <td>{{ data.email }}</td>
+              <td>{{ data.soDt }}</td>
+              <div class="container">
+                <div class="row">
+                  <button class="btn btn-success a-btn-slide-text">
+                    <span
+                      class="glyphicon glyphicon-plus"
+                      aria-hidden="true"
+                    ></span>
+                    <span><strong>Ghi danh</strong></span>
+                  </button>
+                  <button class="btn btn-primary a-btn-slide-text" (click)="fillEditUser(data.taiKhoan)">
+                    <span
+                      class="glyphicon glyphicon-edit"
+                      aria-hidden="true"
+                    ></span>
+                    <span><strong>Edit</strong></span>
+                  </button>
+                  <button class="btn btn-danger a-btn-slide-text" (click)="deleteListUser(data.taiKhoan)" >
+                    <span
+                      class="glyphicon glyphicon-remove"
+                      aria-hidden="true"
+                    ></span>
+                    <span><strong>Delete</strong></span>
+                  </button>
+                </div>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

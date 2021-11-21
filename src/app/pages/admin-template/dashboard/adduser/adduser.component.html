@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm.value)">
+        <div class="form-group">
+          <label for="">Họ và tên</label>
+          <input type="text" class="form-control" name="hoTen" ngModel />
+        </div>
+        <div class="form-group">
+          <label for="">Tài khoản</label>
+          <input
+            type="text"
+            class="form-control"
+            name="taiKhoan"
+            ngModel
+            required
+            #TaiKhoan="ngModel"
+            minlength="8"
+            maxlength="12"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
+          >
+            <!-- Kiểm tra rỗng  -->
+            <div *ngIf="TaiKhoan.errors.required">Tài khoản không bỏ trống</div>
+
+            <!-- Kiểm tra độ dài kí tự  -->
+            <div *ngIf="TaiKhoan.errors.minlength || TaiKhoan.errors.maxlength">
+              Độ dài kí tự từ 8-12
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Mật khẩu</label>
+          <input type="text" class="form-control" name="matKhau" ngModel />
+        </div>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            ngModel
+            required
+            #Email="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="Email.errors && (Email.dirty || Email.touched)"
+          >
+            <div *ngIf="Email.errors.required">Email không bỏ trống!</div>
+            <div *ngIf="Email.errors.pattern">Email không đúng định dạng</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">SĐT</label>
+          <input type="text" class="form-control" name="soDT" ngModel />
+        </div>
+        <div class="form-group">
+          <label for="user">Loại người dùng:</label>
+          <select name="loaiNguoiDung" id="user">
+            <option value="GV">Giáo viên</option>
+            <option value="HV">Học viên</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" [disabled]="!addUserForm.valid">
+          Add user
+        </button>
+        <button class="btn btn-warning comeBack" routerLink="/admin/dashboard">
+            Trở lại
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

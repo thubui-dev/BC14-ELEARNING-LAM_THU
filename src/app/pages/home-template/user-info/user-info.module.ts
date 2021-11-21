@@ -6,9 +6,10 @@ import { UserInfoComponent } from "./user-info.component";
 import { ShareModuleModule } from "src/app/_core/shares/share-module/share-module.module";
 import { MaterialExampleModule } from "src/app/_core/shares/material-module";
 import { FormsModule } from "@angular/forms";
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [UserInfoComponent],
+  declarations: [UserInfoComponent, TableComponent],
   imports: [
     CommonModule,
     UserInfoRoutingModule,

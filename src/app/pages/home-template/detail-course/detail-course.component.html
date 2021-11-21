@@ -4,7 +4,7 @@
       <div class="panel-body">
         <div class="col-md-6">
           <div class="pro-img-details">
-            <img [src]="course.hinhAnh" [alt]="course.moTa">
+            <img [src]="course.hinhAnh" alt="hinhKhoaHoc">
           </div>
         </div>
         <div class="col-md-6">
@@ -20,6 +20,7 @@
             <span class="posted_in"> <strong>Lượt Xem:{{course.luotXem}}</strong></span>
           </div>
           <div class="m-bot15"> <strong>Mã Khóa học :{{course.maKhoaHoc}} </strong> </div>
+          <button class="btn btn-success" routerLink="/user-info">Đăng ký hóa học</button>
 
         </div>
       </div>

@@ -22,9 +22,9 @@ export class AuthComponent implements OnInit {
           localStorage.setItem("UserAdmin", JSON.stringify(result));
 
           // Chuyển Hướng
-          this.router.navigate(['/admin/dashboard']);
+          this.router.navigate(["/admin/dashboard"]);
         } else {
-          this.router.navigate(["/user-info"]);
+          this.router.navigate(["/user-info/:id"]);
         }
         this.userInfo = result;
         console.log(this.userInfo);

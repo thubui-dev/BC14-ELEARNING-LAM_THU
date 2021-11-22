@@ -64,7 +64,7 @@ export class DataService {
       })
     );
   }
-  
+
   postRegisterCourses(courses: any): Observable<any> {
     const url =
       "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";
@@ -78,7 +78,7 @@ export class DataService {
 
   getListCourse(): Observable<any> {
     const url =
-      "https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01";
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01";
     return this.http.get(url).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -110,7 +110,7 @@ export class DataService {
   }
 
   getDetailCourse(id: any): Observable<any> {
-    const url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`;
+    const url = `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`;
     return this.http.get(url).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -121,7 +121,7 @@ export class DataService {
 
   registerUser(user: any): Observable<any> {
     const url =
-      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -131,7 +131,7 @@ export class DataService {
   }
   addUser(user: any): Observable<any> {
     const url =
-      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung";
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {
@@ -142,7 +142,7 @@ export class DataService {
 
   loginAuth(user: any): Observable<any> {
     const url =
-      "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
     return this.http.post(url, user).pipe(
       tap(() => {}),
       catchError((error: any) => {

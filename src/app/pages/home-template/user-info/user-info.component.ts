@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "@services/data.service";
 
+import { Subscription } from "rxjs";
+
 @Component({
   selector: "app-user-info",
   templateUrl: "./user-info.component.html",
@@ -8,6 +10,8 @@ import { DataService } from "@services/data.service";
 })
 export class UserInfoComponent implements OnInit {
   alert: boolean = false;
+  renderInfo: any;
+  subRenderInfo = new Subscription();
 
   constructor(private data: DataService) {}
 

@@ -6,7 +6,7 @@ import { Component, OnInit, Input, SimpleChange } from "@angular/core";
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit {
-  @Input() infoCourse: any;
+  @Input() data: any;
   constructor() {}
 
   ngOnChanges(changes: SimpleChange) {

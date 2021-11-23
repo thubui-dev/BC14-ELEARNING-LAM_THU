@@ -58,9 +58,9 @@
         <div class="container">
             <div class="row">
 
-                <ng-container *ngIf="detailUserCourse">
-                    <div class="col-md-3" *ngFor="let infoCourse of detailUserCourse?.lstHocVien ">
-                        <app-table [infoCourse]="infoCourse"></app-table>
+                <ng-container>
+                    <div class="col-md-3" *ngFor="let data of renderInfo.chiTietKhoaHocGhiDanh">
+                        <app-table [data]="data"></app-table>
                     </div>
                 </ng-container>
             </div>

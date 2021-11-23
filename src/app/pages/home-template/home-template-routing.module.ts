@@ -45,7 +45,7 @@ const routes: Routes = [
           import("./register/register.module").then((m) => m.RegisterModule),
       },
       {
-        path: "user-info",
+        path: "user-info/:id",
         loadChildren: () =>
           import("./user-info/user-info.module").then((m) => m.UserInfoModule),
       },

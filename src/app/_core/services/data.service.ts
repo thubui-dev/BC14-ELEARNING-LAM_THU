@@ -24,17 +24,6 @@ export class DataService {
     );
   }
 
-  getDetailUserCourse(): Observable<any> {
-    const url =
-      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinHocVienKhoaHoc?maKhoaHoc=0.14967431092137828";
-    return this.http.get(url).pipe(
-      tap(() => {}),
-      catchError((error: any) => {
-        return this.handleError(error);
-      })
-    );
-  }
-
   post(uri: any, data: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
     return this.http.post(url, data).pipe(
@@ -58,17 +47,6 @@ export class DataService {
   delete(uri: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
     return this.http.delete(url).pipe(
-      tap(() => {}),
-      catchError((error: any) => {
-        return this.handleError(error);
-      })
-    );
-  }
-
-  postRegisterCourses(courses: any): Observable<any> {
-    const url =
-      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";
-    return this.http.post(url, courses).pipe(
       tap(() => {}),
       catchError((error: any) => {
         return this.handleError(error);
@@ -119,6 +97,28 @@ export class DataService {
     );
   }
 
+  postRegisterCourses(courses: any): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/DangKyKhoaHoc";
+    return this.http.post(url, courses).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  renderInfoCourse(info: any): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung";
+    return this.http.post(url, info).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   registerUser(user: any): Observable<any> {
     const url =
       "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy";
@@ -144,6 +144,16 @@ export class DataService {
     const url =
       "https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap";
     return this.http.post(url, user).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
+  cancelCourse(course: any): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/HuyGhiDanh";
+    return this.http.post(url, course).pipe(
       tap(() => {}),
       catchError((error: any) => {
         return this.handleError(error);

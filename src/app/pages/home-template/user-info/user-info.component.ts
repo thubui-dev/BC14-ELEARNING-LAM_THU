@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { analyzeAndValidateNgModules } from "@angular/compiler";
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "@services/data.service";
+
 import { Subscription } from "rxjs";
 
 @Component({
@@ -8,22 +10,26 @@ import { Subscription } from "rxjs";
   styleUrls: ["./user-info.component.scss"],
 })
 export class UserInfoComponent implements OnInit {
-  @Input() infoCourse: any;
-  detailUserCourse: any = {};
   alert: boolean = false;
-  subUserCourse = new Subscription();
-  constructor(private data: DataService) {}
+  renderInfo: any;
 
-  ngOnInit(): void {
-    this.getUserCourse();
+  subRenderInfoCourse = new Subscription();
+  subRenderInfo = new Subscription();
+
+  constructor(private data: DataService) {
+    this.renderInfo = [];
   }
 
-  getUserCourse() {
-    this.subUserCourse = this.data
-      .getDetailUserCourse()
-      .subscribe((result: any) => {
-        this.detailUserCourse = { ...result };
-        console.log(this.detailUserCourse);
+  ngOnInit(): void {
+    this.renderInfoCourse();
+  }
+
+  renderInfoCourse() {
+    this.subRenderInfo = this.data
+      .post("api/QuanLyNguoiDung/ThongTinNguoiDung", this.data)
+      .subscribe((result) => {
+        this.renderInfo = result;
+        console.log(this.renderInfo);
       });
   }
 
@@ -38,10 +44,5 @@ export class UserInfoComponent implements OnInit {
   }
   closeAlert() {
     this.alert = false;
-  }
-
-  ngOnDestroy() {
-    console.log("ngOnDestroy");
-    this.subUserCourse.unsubscribe();
   }
 }

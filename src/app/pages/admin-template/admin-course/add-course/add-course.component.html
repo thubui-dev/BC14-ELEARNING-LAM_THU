@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form #addCourseForm="ngForm" (ngSubmit)="addCourse(addCourseForm.value)">
+        <div class="form-group">
+          <label for="">Mã khóa học</label>
+          <input
+            type="text"
+            class="form-control"
+            name="maKhoaHoc"
+            [(ngModel)]="courseEdit.maKhoaHoc"
+            [disabled]="id"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Tên khóa học</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tenKhoaHoc"
+            [(ngModel)]="courseEdit.tenKhoaHoc"
+            required
+            #Tenkhoahoc="ngModel"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Đánh giá</label>
+          <input
+            type="text"
+            class="form-control"
+            name="danhGia"
+            [(ngModel)]="courseEdit.danhGia"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Lượt xem</label>
+          <input
+            type="text"
+            class="form-control"
+            name="luotXem"
+            [(ngModel)]="courseEdit.luotXem"
+            required
+            #Luotxem="ngModel"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Hình ảnh</label>
+          <input
+            type="file"
+            name="hinhAnh"
+            [(ngModel)]="courseEdit.hinhAnh"
+            required
+            #Hinhanh="ngModel"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Danh mục khóa học</label>
+          <select name="danhMucKhoaHoc" [(ngModel)]="courseEdit.danhMucKhoaHoc">
+            <option *ngFor="let dataService of danhMucKhoaHoc" value="dataService.maDanhMuc">{{ dataService.tenDanhMuc }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="user">Người tạo</label>
+          <select name="nguoiTao" id="user" [(ngModel)]="courseEdit.nguoiTao">
+            <option value="GV">Giáo viên</option>
+            <option value="HV">Học viên</option>
+          </select>
+        </div>
+        <button
+          *ngIf="!id; else btnUpdate"
+          class="btn btn-primary"
+          [disabled]="!addCourseForm.valid"
+        >
+          Add course
+        </button>
+        <ng-template #btnUpdate>
+          <button class="btn btn-success" [disabled]="!addCourseForm.valid">
+            Edit course
+          </button>
+        </ng-template>
+        <button
+          class="btn btn-warning comeBack"
+          routerLink="/admin/admin-course"
+        >
+          Trở lại
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

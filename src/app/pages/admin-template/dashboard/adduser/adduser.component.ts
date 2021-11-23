@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DataService } from "src/app/_core/services/data.service";
 import { Router } from "@angular/router";
-import { observable } from "rxjs";
+// import { observable } from "rxjs";
 
 @Component({
   selector: "app-adduser",

@@ -19,6 +19,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
       },
+      {
+        path: "admin-course",
+        loadChildren: () =>
+          import("./admin-course/admin-course.module").then((m) => m.AdminCourseModule),
+      },
     ],
     canActivate: [AuthGuard],
   },

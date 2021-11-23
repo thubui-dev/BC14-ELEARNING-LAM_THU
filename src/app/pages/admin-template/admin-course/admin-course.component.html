@@ -9,16 +9,11 @@
   <input
     class="form-control form-control-light w-100"
     type="text"
-    [(ngModel)]="searchUser"
-    name="searchUser"
-    placeholder="Tìm kiếm người dùng"
+    [(ngModel)]="searchCourse"
+    name="searchCourse"
+    placeholder="Tìm kiếm khóa học"
     aria-label="Search"
   />
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
-    </li>
-  </ul>
 </nav>
 <div class="container-fluid">
   <div class="row">
@@ -47,8 +42,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/admin-course"> 
-              Quản lý khóa học </a>
+            <a class="nav-link" routerLink="/admin/admin-course">
+              Quản lý khóa học
+            </a>
           </li>
         </ul>
       </div>
@@ -66,41 +62,36 @@
           border-bottom
         "
       >
-        <button class="btn btn-primary h2" routerLink="quanlynguoidung">
-          Thêm người dùng
+        <button class="btn btn-primary h2" routerLink="quanlykhoahoc">
+          Thêm khóa học
         </button>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tài khoản</th>
-              <th>Mật khẩu</th>
-              <th>Họ tên</th>
-              <th>Email</th>
-              <th>SĐT</th>
+              <th>Mã khóa học</th>
+              <th>Tên khóa học</th>
+              <th>Hình ảnh</th>
+              <th>Lượt xem</th>
+              <th>Người tạo</th>
               <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of (listUser | nameFilter: searchUser); let i = index">
+            <tr
+              *ngFor="
+                let data of listCourse | courseFilter: searchCourse;
+                let i = index
+              "
+            >
               <td>{{ i }}</td>
-              <td>{{ data.taiKhoan }}</td>
-              <td>{{ data.matKhau }}</td>
-              <td>{{ data.hoTen }}</td>
-              <td>{{ data.email }}</td>
-              <td>{{ data.soDt }}</td>
+              <td>{{ data.maKhoaHoc }}</td>
+              <td>{{ data.tenKhoaHoc }}</td>
+              <td><img class="imgCourse" src="{{ data.hinhAnh }}" alt="" /></td>
+              <td>{{ data.luotXem }}</td>
+              <td>{{ data.nguoiTao }}</td>
               <div class="container">
                 <div class="row">
                   <button class="btn btn-success a-btn-slide-text">
@@ -110,14 +101,20 @@
                     ></span>
                     <span><strong>Ghi danh</strong></span>
                   </button>
-                  <button class="btn btn-primary a-btn-slide-text" (click)="fillEditUser(data)">
+                  <button
+                    class="btn btn-primary a-btn-slide-text"
+                    (click)="fillEditCourse(data)"
+                  >
                     <span
                       class="glyphicon glyphicon-edit"
                       aria-hidden="true"
                     ></span>
                     <span><strong>Edit</strong></span>
                   </button>
-                  <button class="btn btn-danger a-btn-slide-text" (click)="deleteListUser(data.taiKhoan)" >
+                  <button
+                    class="btn btn-danger a-btn-slide-text"
+                    (click)="deleteListCourse(data.maKhoaHoc)"
+                  >
                     <span
                       class="glyphicon glyphicon-remove"
                       aria-hidden="true"

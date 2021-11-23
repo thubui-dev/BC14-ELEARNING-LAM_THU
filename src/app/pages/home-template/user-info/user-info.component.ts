@@ -16,7 +16,9 @@ export class UserInfoComponent implements OnInit {
   subRenderInfoCourse = new Subscription();
   subRenderInfo = new Subscription();
 
-  constructor(private data: DataService) {}
+  constructor(private data: DataService) {
+    this.renderInfo = [];
+  }
 
   ngOnInit(): void {
     this.renderInfoCourse();

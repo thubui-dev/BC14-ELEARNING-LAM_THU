@@ -18,6 +18,7 @@ export class TableComponent implements OnInit {
 
   deleteCourse(course: any) {
     console.log(course);
+
     this.dataService
       .post("api/QuanLyKhoaHoc/HuyGhiDanh", course)
       .subscribe((result: any) => {

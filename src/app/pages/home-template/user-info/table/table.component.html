@@ -1,23 +1,22 @@
-<p>table works</p>
 <div class="max-w-xs rounded-md shadow-md bg-coolGray-50 text-coolGray-800">
     <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/03/MIN-OP1.png" alt="hihih"
         class="object-cover object-center w-full rounded-t-md h-72 bg-coolGray-500" />
 
     <div class="flex flex-col justify-between p-6 space-y-8">
         <div class="space-y-2">
-            <h2 class="text-3xl font-semibold tracking-wide"> Mã khóa học :{{data.maKhoaHoc}} -
+            <h2 class="text-3xl font-semibold tracking-wide"> Mã khóa học :{{data.maKhoaHoc | slice: 0:10}} -
                 Tên khóa học:
-                {{data.tenKhoaHoc}}</h2>
+                {{data.tenKhoaHoc | slice: 0:10}}</h2>
 
             <hr />
             <h2>Thông tin tài khoản</h2>
             <div>
                 <p>Email: "afkechi@gmail.com"</p>
                 <P>Họ và tên : BC14 Ngo An</P>
-                <p>Nhóm: GP01</p>
+                <p>Tài Khoản:</p>
+                <button class="btn btn-danger" (click)="deleteCourse(data.maKhoaHoc)">Hủy Khóa
+                    học</button>
             </div>
         </div>
-
-
     </div>
 </div>

@@ -150,6 +150,16 @@ export class DataService {
       })
     );
   }
+  cancelCourse(course: any): Observable<any> {
+    const url =
+      "https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/HuyGhiDanh";
+    return this.http.post(url, course).pipe(
+      tap(() => {}),
+      catchError((error: any) => {
+        return this.handleError(error);
+      })
+    );
+  }
 
   handleError(error: any) {
     switch (error.status) {

@@ -20,11 +20,12 @@ export class TableComponent implements OnInit {
     console.log(this.info);
   }
 
-  deleteCourse(data: any) {
-    console.log(data);
+  deleteCourse(maKhoaHoc: any, taiKhoan: any) {
+    const ketQua = { maKhoaHoc, taiKhoan };
+    console.log(ketQua);
 
     this.dataService
-      .post("api/QuanLyKhoaHoc/HuyGhiDanh", data)
+      .post("api/QuanLyKhoaHoc/HuyGhiDanh", ketQua)
       .subscribe((result: any) => {
         console.log(result);
       });

@@ -8,19 +8,23 @@ import { DataService } from "@services/data.service";
 })
 export class TableComponent implements OnInit {
   @Input() data: any;
+  @Input() info: any;
   constructor(private dataService: DataService) {}
 
   ngOnChanges(changes: SimpleChange) {
     console.log(changes);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+    console.log(this.info);
+  }
 
-  deleteCourse(course: any) {
-    console.log(course);
+  deleteCourse(data: any) {
+    console.log(data);
 
     this.dataService
-      .post("api/QuanLyKhoaHoc/HuyGhiDanh", course)
+      .post("api/QuanLyKhoaHoc/HuyGhiDanh", data)
       .subscribe((result: any) => {
         console.log(result);
       });

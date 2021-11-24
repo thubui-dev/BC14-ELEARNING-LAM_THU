@@ -46,15 +46,18 @@
         <div class="form-group">
           <label for="">Hình ảnh</label>
           <input
+            style="display: one"
             type="file"
             name="hinhAnh"
+            (change)="onFileSelected($event)"
             [(ngModel)]="courseEdit.hinhAnh"
             required
             #Hinhanh="ngModel"
           />
+          <div class="imgUpload" [ngStyle]="{'background-image':'url('+getFile+')'}"></div>
         </div>
         <div class="form-group">
-          <label for="">Danh mục khóa học</label>
+          <label for="">Danh mục khóa học:</label>
           <select name="danhMucKhoaHoc" [(ngModel)]="courseEdit.danhMucKhoaHoc">
             <option *ngFor="let dataService of danhMucKhoaHoc" value="dataService.maDanhMuc">{{ dataService.tenDanhMuc }}</option>
           </select>
@@ -69,6 +72,7 @@
         <button
           *ngIf="!id; else btnUpdate"
           class="btn btn-primary"
+          (click)="onUpload()"
           [disabled]="!addCourseForm.valid"
         >
           Add course

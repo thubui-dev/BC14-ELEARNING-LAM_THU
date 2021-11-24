@@ -110,3 +110,9 @@ button.btn {
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
 }
+
+.imgUpload {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}

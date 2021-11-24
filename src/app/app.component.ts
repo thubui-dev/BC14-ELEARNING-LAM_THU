@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bc14angularrouting';
+  title = 'BC14_E-LEARNING';
 }

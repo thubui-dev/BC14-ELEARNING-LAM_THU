@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "@services/data.service";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
+import { HttpEventType } from "@angular/common/http";
 
 @Component({
   selector: "app-add-course",
@@ -22,10 +23,18 @@ export class AddCourseComponent implements OnInit {
     tenKhoaHoc: "",
     maKhoaHoc: "",
   };
+
   id: any;
   data: any;
-  constructor(private dataService: DataService, private route: Router,  private routeAct: ActivatedRoute,) {}
+  selectedFile: any;
+  getFile: any;
 
+  constructor(
+    private dataService: DataService,
+    private route: Router,
+    private routeAct: ActivatedRoute,
+  ) {}
+  
   ngOnInit(): void {
     this.subgetCourse = this.routeAct.queryParams.subscribe((params: any) => {
       this.id = params["maKhoaHoc"];
@@ -55,6 +64,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   addCourse(value: any) {
+    this.onUpload();
     if (!this.id) {
       this.dataService
         .post("api/QuanLyKhoaHoc/ThemKhoaHoc", value)
@@ -76,5 +86,29 @@ export class AddCourseComponent implements OnInit {
           },
         });
     }
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+    this.getFile = URL.createObjectURL(this.selectedFile);
+  }
+
+
+
+  onUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name)
+    this.dataService.post('/api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc', fd, {
+      reportProgress: true,
+      observe: 'event'
+    })
+      .subscribe(event => {
+        if(event.type === HttpEventType.UploadProgress) {
+          // console.log('Upload Progess' + Math.round(event.loaded)/ event.total * 100)  +'%') ;
+          
+        } else if (event.type === HttpEventType.Response) {
+          console.log(event);
+        }
+      })
   }
 }

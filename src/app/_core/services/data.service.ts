@@ -24,9 +24,9 @@ export class DataService {
     );
   }
 
-  post(uri: any, data: any): Observable<any> {
+  post(uri: any, data: any, obj?: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
-    return this.http.post(url, data).pipe(
+    return this.http.post(url, data, obj).pipe(
       tap(() => {}),
       catchError((error: any) => {
         return this.handleError(error);

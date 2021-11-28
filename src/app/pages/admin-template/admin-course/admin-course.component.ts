@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class AdminCourseComponent implements OnInit {
   searchCourse: string;
   listCourse: any;
+  courseGhidanh: any;
   subListCourse = new Subscription();
   constructor(private data: DataService, private route: Router) {
     this.searchCourse = "";
@@ -49,5 +50,13 @@ export class AdminCourseComponent implements OnInit {
           }
         });
       });
+  }
+
+  handleClickGhidanh(course: any) {
+    this.route.navigate(["/admin/admin-course"], {
+      queryParams: {
+        courseGhidanh: course
+      }
+    });
   }
 }

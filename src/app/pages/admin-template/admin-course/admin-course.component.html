@@ -94,7 +94,7 @@
               <td>{{ data.nguoiTao }}</td>
               <div class="container">
                 <div class="row">
-                  <button class="btn btn-success a-btn-slide-text">
+                  <button class="btn btn-success a-btn-slide-text" data-toggle="modal" data-target="#courseGhidanhModal" (click)="handleClickGhidanh(data.maKhoaHoc)">
                     <span
                       class="glyphicon glyphicon-plus"
                       aria-hidden="true"
@@ -130,3 +130,5 @@
     </main>
   </div>
 </div>
+
+<app-course-ghidanh></app-course-ghidanh>

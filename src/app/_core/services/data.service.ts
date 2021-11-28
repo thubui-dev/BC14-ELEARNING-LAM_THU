@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { tap, catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
@@ -46,12 +46,12 @@ export class DataService {
 
   delete(uri: any): Observable<any> {
     const url = `${urlApi}/${uri}`;
-    return this.http.delete(url).pipe(
-      tap(() => {}),
-      catchError((error: any) => {
-        return this.handleError(error);
-      })
-    );
+    let options: any = {
+      responseType: 'text',
+    };
+    return this.http
+      .delete(url, options)
+      .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
   getListCourse(): Observable<any> {

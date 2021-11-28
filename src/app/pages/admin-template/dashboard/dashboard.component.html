@@ -15,8 +15,8 @@
     aria-label="Search"
   />
   <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
+    <li class="nav-item text-nowrap text-white">
+      <span>{{userLogin?.hoTen}}</span>
     </li>
   </ul>
 </nav>
@@ -47,8 +47,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/admin-course"> 
-              Quản lý khóa học </a>
+            <a class="nav-link" routerLink="/admin/admin-course">
+              Quản lý khóa học
+            </a>
           </li>
         </ul>
       </div>
@@ -69,16 +70,6 @@
         <button class="btn btn-primary h2" routerLink="quanlynguoidung">
           Thêm người dùng
         </button>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -94,7 +85,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of (listUser | nameFilter: searchUser); let i = index">
+            <tr
+              *ngFor="
+                let data of listUser | nameFilter: searchUser;
+                let i = index
+              "
+            >
               <td>{{ i }}</td>
               <td>{{ data.taiKhoan }}</td>
               <td>{{ data.matKhau }}</td>
@@ -103,21 +99,33 @@
               <td>{{ data.soDt }}</td>
               <div class="container">
                 <div class="row">
-                  <button class="btn btn-success a-btn-slide-text">
+                  <button
+                    type="button"
+                    class="btn btn-success a-btn-slide-text"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    (click)="selectAccount(data.taiKhoan)"
+                  >
                     <span
                       class="glyphicon glyphicon-plus"
                       aria-hidden="true"
                     ></span>
                     <span><strong>Ghi danh</strong></span>
                   </button>
-                  <button class="btn btn-primary a-btn-slide-text" (click)="fillEditUser(data)">
+                  <button
+                    class="btn btn-primary a-btn-slide-text"
+                    (click)="fillEditUser(data)"
+                  >
                     <span
                       class="glyphicon glyphicon-edit"
                       aria-hidden="true"
                     ></span>
                     <span><strong>Edit</strong></span>
                   </button>
-                  <button class="btn btn-danger a-btn-slide-text" (click)="deleteListUser(data.taiKhoan)" >
+                  <button
+                    class="btn btn-danger a-btn-slide-text"
+                    (click)="deleteListUser(data.taiKhoan)"
+                  >
                     <span
                       class="glyphicon glyphicon-remove"
                       aria-hidden="true"
@@ -133,3 +141,4 @@
     </main>
   </div>
 </div>
+<app-modal-ghidanh [account]="currentAccount"></app-modal-ghidanh>

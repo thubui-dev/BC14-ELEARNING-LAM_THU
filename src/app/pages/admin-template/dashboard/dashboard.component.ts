@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DataService } from "@services/data.service";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
+import { ShareDataService } from "@services/share-data.service";
 
 @Component({
   selector: "app-dashboard",
@@ -12,13 +13,21 @@ export class DashboardComponent implements OnInit {
   searchUser: string;
   listUser: any;
   subListUser = new Subscription();
-  constructor(private data: DataService, private route: Router) {
+  currentAccount = '';
+
+  userLogin: any;
+  constructor(private data: DataService, private route: Router, private share: ShareDataService) {
     this.searchUser = "";
     this.listUser = [];
   }
 
   ngOnInit(): void {
     this.getListUser();
+    this.share.userLogin.subscribe({
+      next: (result: any) => {
+        this.userLogin = result;
+      }
+    });
   }
 
   getListUser() {
@@ -32,6 +41,15 @@ export class DashboardComponent implements OnInit {
   fillEditUser(data: any) {
     this.route.navigate(["/admin/dashboard/quanlynguoidung"], {
       queryParams: { taiKhoan: data.taiKhoan, matKhau: data.matKhau },
+    });
+  }
+
+  selectAccount(account: string) {
+    // this.currentAccount = account;
+    this.route.navigate(["/admin/dashboard"], {
+      queryParams: {
+        taiKhoan: account
+      }
     });
   }
 

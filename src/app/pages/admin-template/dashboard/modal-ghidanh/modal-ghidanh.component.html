@@ -1,0 +1,147 @@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <div class="d-flex justify-content-center">
+          <h3 class="modal-title" id="exampleModalLabel">Chọn khóa học</h3>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="px-3">
+          <input
+            list="browsers"
+            class="form-control"
+            style="max-width: 80%"
+            placeholder="Tên khóa học"
+            (input)="selectedCourse"
+            (input)="onChange($event)"
+          />
+
+          <datalist id="browsers">
+            <option
+              *ngFor="let dataService of danhMucKhoaHoc"
+              value="{{ dataService?.maKhoaHoc }}"
+            >
+              {{ dataService.tenKhoaHoc }}
+            </option>
+          </datalist>
+
+          <button class="btn btn-success" (click)="ghiDanh()">
+            Ghi Danh
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <h3>Khóa học chờ xác thực</h3>
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập tên khóa học"
+              #waitInput
+              (input)="onSearch(waitInput.value,1)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table
+          class="table table-striped table-bordered"
+          style="margin-bottom: 0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên khóa học</th>
+              <th scope="col">Chờ xác nhận</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dataService of listCourseNotAccess; let i = index">
+              <th scope="row">{{ i }}</th>
+              <td>{{ dataService.tenKhoaHoc }}</td>
+              <td>
+                <button
+                (click)="handleRegister(dataService.maKhoaHoc)"
+                  class="btn btn-success"
+                >
+                  Xác nhận
+                </button>
+                <button
+                (click)="cancelRegisterGhidanh(dataService.maKhoaHoc, 1)"
+                  class="btn btn-danger"
+                >
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer d-block">
+        <div class="row">
+          <div class="col-6">
+            <h3>Khóa học đã ghi danh</h3>
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập tên khóa học"
+              #daGhiDanh
+              (input)="onSearch(daGhiDanh.value,2)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar mb-3">
+        <table
+          class="table table-striped table-bordered"
+          style="margin-bottom: 0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tên khóa học</th>
+              <th scope="col">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dataService of listCourseAccess; let i = index">
+              <th scope="row">{{i}}</th>
+              <td>{{dataService.tenKhoaHoc}}</td>
+              <td>
+                <button
+                (click)="cancelRegisterGhidanh(dataService.maKhoaHoc, 2)"
+                  class="btn btn-danger"
+                >
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "src/app/_core/services/data.service";
 import { Router } from "@angular/router";
+import { ShareDataService } from "@services/share-data.service";
 
 @Component({
   selector: "app-auth",
@@ -9,9 +10,9 @@ import { Router } from "@angular/router";
 })
 export class AuthComponent implements OnInit {
   userInfo: any = {};
-  constructor(private data: DataService, private router: Router) {}
+  constructor(private data: DataService, private router: Router, private share: ShareDataService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login(user: any) {
     this.data
@@ -20,7 +21,7 @@ export class AuthComponent implements OnInit {
         if (result.maLoaiNguoiDung === "GV") {
           // Lưu trạng thái xuông local Store
           localStorage.setItem("UserAdmin", JSON.stringify(result));
-
+          this.share.userLogin = result;
           // Chuyển Hướng
           this.router.navigate(["/admin/dashboard"]);
         } else {

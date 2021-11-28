@@ -1,0 +1,154 @@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="courseGhidanhModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <div class="d-flex justify-content-center">
+          <h3 class="modal-title" id="exampleModalLabel">Chọn người dùng</h3>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="px-3">
+          <form
+            #formRegister="ngForm"
+            (ngSubmit)="handleGhidanh('')"
+            class="d-flex justify-content-between"
+          >
+            <input
+              #selectUser
+              (input)="onInput(selectUser.value)"
+              list="browsers"
+              class="form-control"
+              style="max-width: 80%"
+              placeholder="Tên người dùng"
+            />
+
+            <datalist id="browsers">
+              <option
+                *ngFor="let user of listUser"
+                value="{{ user?.taiKhoan }}"
+              >
+                {{ user.hoTen }}
+              </option>
+            </datalist>
+            <button type="submit" class="btn btn-success">Ghi Danh</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <h3>Học viên chưa xác thực</h3>
+          </div>
+          <div class="col-6">
+            <input
+              #userNot
+              (input)="searchUser(userNot.value, 1)"
+              type="text"
+              class="form-control"
+              placeholder="Nhập họ tên học viên hoặc số điện thoại"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table
+          class="table table-striped table-bordered"
+          style="margin-bottom: 0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tài Khoản</th>
+              <th scope="col">Họ Tên</th>
+              <th scope="col">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of listUserNotAccess; let i = index">
+              <th scope="row">{{ i }}</th>
+              <td>{{ user.taiKhoan }}</td>
+              <td>{{ user.hoTen }}</td>
+              <td>
+                <button
+                  (click)="handleGhidanh(user.taiKhoan)"
+                  class="btn btn-success"
+                >
+                  Xác nhận
+                </button>
+                <button
+                  (click)="cancelCourseGhidanh(user.taiKhoan, 1)"
+                  class="btn btn-danger"
+                >
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer d-block">
+        <div class="row">
+          <div class="col-6">
+            <h3>Học viên đã tham gia khóa học</h3>
+          </div>
+          <div class="col-6">
+            <input
+              #user
+              (input)="searchUser(user.value, 2)"
+              type="text"
+              class="form-control"
+              placeholder="Nhập họ tên học viên hoặc số điện thoại"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar mb-3">
+        <table
+          class="table table-striped table-bordered"
+          style="margin-bottom: 0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Tài Khoản</th>
+              <th scope="col">Họ Tên</th>
+              <th scope="col">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of listUserAccess; let i = index">
+              <th scope="row">{{ i }}</th>
+              <td>{{ user.taiKhoan }}</td>
+              <td>{{ user.hoTen }}</td>
+              <td>
+                <button
+                  (click)="cancelCourseGhidanh(user.taiKhoan, 2)"
+                  class="btn btn-danger"
+                >
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
